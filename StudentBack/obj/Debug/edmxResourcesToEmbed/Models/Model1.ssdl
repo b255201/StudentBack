@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StudentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Activity_Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="AdultClass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Course" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ChildClass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Course" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EDM">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="elementary_Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="employeeId" />
+    </Key>
+    <Property Name="employeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employeeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="employeeAccount" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="employeePwd" Type="varbinary" MaxLength="60" Nullable="false" />
+    <Property Name="employeeSalt" Type="varbinary" MaxLength="50" Nullable="false" />
+    <Property Name="employeeCategoryId" Type="int" Nullable="false" />
+    <Property Name="employeeOnBoardDate" Type="datetime" />
+    <Property Name="employeeLeaveDate" Type="datetime" />
+    <Property Name="employeePhoto" Type="nvarchar" MaxLength="50" />
+    <Property Name="createTime" Type="datetime" />
+    <Property Name="modifyTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="employeeCategory">
+    <Key>
+      <PropertyRef Name="employeeCategoryID" />
+    </Key>
+    <Property Name="employeeCategoryID" Type="int" Nullable="false" />
+    <Property Name="employeeCategoryname" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="employeeCategoryDetails">
+    <Key>
+      <PropertyRef Name="employeeCategoryId" />
+      <PropertyRef Name="permissionId" />
+    </Key>
+    <Property Name="employeeCategoryId" Type="int" Nullable="false" />
+    <Property Name="permissionId" Type="int" Nullable="false" />
+    <Property Name="canAccess" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FreeTrail">
+    <Key>
+      <PropertyRef Name="SeqID" />
+    </Key>
+    <Property Name="SeqID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="10" />
+    <Property Name="SchoolName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="LocalPhone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Course" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Memo" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="High_Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="HighClass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Course" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="junior_Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar" MaxLength="50" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="JuniorClass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Course" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JuniorHigh_School">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="10" />
+    <Property Name="Image" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="LastNews">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="permission">
+    <Key>
+      <PropertyRef Name="permissionId" />
+    </Key>
+    <Property Name="permissionId" Type="int" Nullable="false" />
+    <Property Name="permissionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ScholarShip">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date" Type="nvarchar" MaxLength="15" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentImpression">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date" Type="nvarchar" MaxLength="15" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date" Type="nvarchar" MaxLength="15" />
+    <Property Name="href" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Item" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_employee_employeeCategory">
+    <End Role="employeeCategory" Type="Self.employeeCategory" Multiplicity="1" />
+    <End Role="employee" Type="Self.employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employeeCategory">
+        <PropertyRef Name="employeeCategoryID" />
+      </Principal>
+      <Dependent Role="employee">
+        <PropertyRef Name="employeeCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employeeCategoryDetails_employeeCategory">
+    <End Role="employeeCategory" Type="Self.employeeCategory" Multiplicity="1" />
+    <End Role="employeeCategoryDetails" Type="Self.employeeCategoryDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employeeCategory">
+        <PropertyRef Name="employeeCategoryID" />
+      </Principal>
+      <Dependent Role="employeeCategoryDetails">
+        <PropertyRef Name="employeeCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employeeCategoryDetails_permission">
+    <End Role="permission" Type="Self.permission" Multiplicity="1" />
+    <End Role="employeeCategoryDetails" Type="Self.employeeCategoryDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permission">
+        <PropertyRef Name="permissionId" />
+      </Principal>
+      <Dependent Role="employeeCategoryDetails">
+        <PropertyRef Name="permissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StudentModelStoreContainer">
+    <EntitySet Name="Activity_Message" EntityType="Self.Activity_Message" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdultClass" EntityType="Self.AdultClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ChildClass" EntityType="Self.ChildClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EDM" EntityType="Self.EDM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="elementary_Book" EntityType="Self.elementary_Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employeeCategory" EntityType="Self.employeeCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employeeCategoryDetails" EntityType="Self.employeeCategoryDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FreeTrail" EntityType="Self.FreeTrail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="High_Book" EntityType="Self.High_Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HighClass" EntityType="Self.HighClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="junior_Book" EntityType="Self.junior_Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JuniorClass" EntityType="Self.JuniorClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JuniorHigh_School" EntityType="Self.JuniorHigh_School" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LastNews" EntityType="Self.LastNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="permission" EntityType="Self.permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ScholarShip" EntityType="Self.ScholarShip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentImpression" EntityType="Self.StudentImpression" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_employee_employeeCategory" Association="Self.FK_employee_employeeCategory">
+      <End Role="employeeCategory" EntitySet="employeeCategory" />
+      <End Role="employee" EntitySet="employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employeeCategoryDetails_employeeCategory" Association="Self.FK_employeeCategoryDetails_employeeCategory">
+      <End Role="employeeCategory" EntitySet="employeeCategory" />
+      <End Role="employeeCategoryDetails" EntitySet="employeeCategoryDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employeeCategoryDetails_permission" Association="Self.FK_employeeCategoryDetails_permission">
+      <End Role="permission" EntitySet="permission" />
+      <End Role="employeeCategoryDetails" EntitySet="employeeCategoryDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,110 @@
+﻿
+@{
+    /**/
+
+    /**/
+
+    ViewBag.Title = "兒童部課程新增維護";
+    Layout = "~/Views/Shared/_Layout_Original.cshtml";
+}
+
+<h1>兒童部課程新增維護</h1>
+<br /><br />
+@using (Html.BeginForm("Insert", "ChildClass", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "frmSub" }))
+{
+    <div class="form-group">
+
+        <label for="Description" class="col-sm-2 control-label">標題</label>
+        <div class="col-sm-10">
+            <input type="text" id="title" name="title" class="theinput form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <label for="Description" class="col-sm-2 control-label">描述</label>
+        <div class="col-sm-10">
+            <textarea id="Description" name="Description" class="theinput form-control"></textarea>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="file" class="col-sm-2 control-label">圖片</label>
+        <div class="col-sm-3 " id="Add">
+            <input type="file" id="Image0" name="Images" class="form-control" />
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-3">
+            <button type="button" onclick="AddImage()" class="btn btn-danger">增加上傳圖片檔案</button>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="Course">課程</label>
+        <select class="form-control col-sm-3" name="Course" id="Course">
+            <option value="七年級課程">七年級課程</option>
+            <option value="一口氣英文">一口氣英文</option>
+            <option value="作文班">作文班</option>
+        </select>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3">
+            <button type="button" id="CheckBtn" class="btn btn-default">確定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-3">
+            <label class=" control-label text-danger">@ViewBag.ErrMessage</label>
+        </div>
+    </div>
+}
+
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $("body").on("click", "#CheckBtn", CheckBtn);
+        });
+
+        function CheckBtn() {
+            var ChkFiles = [];
+            for (var i = 0; i <= AdCount; i++) {
+                if ($("#Image" + i).val() != "") {
+                    if ($("#Image" + i).val() != undefined) {
+                        var fileName = $("#Image" + i)[0].files[0].name;
+                        if (ChkFiles != "") {
+                            for (var x = 0; x < ChkFiles.length; x++) {
+
+                                if (ChkFiles[x] == fileName) {
+                                    alert("圖片名稱：" + fileName + " 重複，請檢查");
+                                    return false;
+                                }
+                            }
+                        }
+                        ChkFiles.push(fileName);
+                    }
+                }
+            }
+            $("#frmSub").submit();
+        }
+
+        var AdCount = 1;
+        function AddImage()
+        {
+            $("#Add").append(' <input type="file" id="Image' + AdCount + '"name="Images" class="form-control" />');
+            AdCount++;
+        }
+
+     
+    </script>
+}

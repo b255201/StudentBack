@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StudentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FreeTrail">
+    <Key>
+      <PropertyRef Name="SeqID" />
+    </Key>
+    <Property Name="SeqID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SchoolName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocalPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Course" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Memo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="StudentEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FreeTrail" EntityType="Self.FreeTrail" />
+    <EntitySet Name="employee" EntityType="StudentModel.employee" />
+    <EntitySet Name="employeeCategories" EntityType="StudentModel.employeeCategory" />
+    <EntitySet Name="employeeCategoryDetails" EntityType="StudentModel.employeeCategoryDetail" />
+    <EntitySet Name="permissions" EntityType="StudentModel.permission" />
+    <AssociationSet Name="FK_employeeCategoryDetails_employeeCategory" Association="StudentModel.FK_employeeCategoryDetails_employeeCategory">
+      <End Role="employeeCategory" EntitySet="employeeCategories" />
+      <End Role="employeeCategoryDetail" EntitySet="employeeCategoryDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employeeCategoryDetails_permission" Association="StudentModel.FK_employeeCategoryDetails_permission">
+      <End Role="permission" EntitySet="permissions" />
+      <End Role="employeeCategoryDetail" EntitySet="employeeCategoryDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_employee_employeeCategory" Association="StudentModel.FK_employee_employeeCategory">
+      <End Role="employeeCategory" EntitySet="employeeCategories" />
+      <End Role="employee" EntitySet="employee" />
+    </AssociationSet>
+    <EntitySet Name="JuniorHigh_School" EntityType="StudentModel.JuniorHigh_School" />
+    <EntitySet Name="elementary_Book" EntityType="StudentModel.elementary_Book" />
+    <EntitySet Name="High_Book" EntityType="StudentModel.High_Book" />
+    <EntitySet Name="junior_Book" EntityType="StudentModel.junior_Book" />
+    <EntitySet Name="Activity_Message" EntityType="StudentModel.Activity_Message" />
+    <EntitySet Name="LastNews" EntityType="StudentModel.LastNew" />
+    <EntitySet Name="JuniorClasses" EntityType="StudentModel.JuniorClass" />
+    <EntitySet Name="AdultClasses" EntityType="StudentModel.AdultClass" />
+    <EntitySet Name="ChildClasses" EntityType="StudentModel.ChildClass" />
+    <EntitySet Name="HighClasses" EntityType="StudentModel.HighClass" />
+    <EntitySet Name="Videos" EntityType="StudentModel.Video" />
+    <EntitySet Name="ScholarShips" EntityType="StudentModel.ScholarShip" />
+    <EntitySet Name="EDMs" EntityType="StudentModel.EDM" />
+    <EntitySet Name="StudentImpressions" EntityType="StudentModel.StudentImpression" />
+  </EntityContainer>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="employeeId" />
+    </Key>
+    <Property Name="employeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="employeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="employeeAccount" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="employeePwd" Type="Binary" Nullable="false" MaxLength="60" FixedLength="false" />
+    <Property Name="employeeSalt" Type="Binary" Nullable="false" MaxLength="50" FixedLength="false" />
+    <Property Name="employeeCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="employeeOnBoardDate" Type="DateTime" Precision="3" />
+    <Property Name="employeeLeaveDate" Type="DateTime" Precision="3" />
+    <Property Name="employeePhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="createTime" Type="DateTime" Precision="3" />
+    <Property Name="modifyTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="employeeCategory" Relationship="StudentModel.FK_employee_employeeCategory" FromRole="employee" ToRole="employeeCategory" />
+  </EntityType>
+  <EntityType Name="employeeCategory">
+    <Key>
+      <PropertyRef Name="employeeCategoryID" />
+    </Key>
+    <Property Name="employeeCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="employeeCategoryname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="employeeCategoryDetails" Relationship="StudentModel.FK_employeeCategoryDetails_employeeCategory" FromRole="employeeCategory" ToRole="employeeCategoryDetail" />
+    <NavigationProperty Name="employees" Relationship="StudentModel.FK_employee_employeeCategory" FromRole="employeeCategory" ToRole="employee" />
+  </EntityType>
+  <EntityType Name="employeeCategoryDetail">
+    <Key>
+      <PropertyRef Name="employeeCategoryId" />
+      <PropertyRef Name="permissionId" />
+    </Key>
+    <Property Name="employeeCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="permissionId" Type="Int32" Nullable="false" />
+    <Property Name="canAccess" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="employeeCategory" Relationship="StudentModel.FK_employeeCategoryDetails_employeeCategory" FromRole="employeeCategoryDetail" ToRole="employeeCategory" />
+    <NavigationProperty Name="permission" Relationship="StudentModel.FK_employeeCategoryDetails_permission" FromRole="employeeCategoryDetail" ToRole="permission" />
+  </EntityType>
+  <EntityType Name="permission">
+    <Key>
+      <PropertyRef Name="permissionId" />
+    </Key>
+    <Property Name="permissionId" Type="Int32" Nullable="false" />
+    <Property Name="permissionName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="employeeCategoryDetails" Relationship="StudentModel.FK_employeeCategoryDetails_permission" FromRole="permission" ToRole="employeeCategoryDetail" />
+  </EntityType>
+  <Association Name="FK_employeeCategoryDetails_employeeCategory">
+    <End Type="StudentModel.employeeCategory" Role="employeeCategory" Multiplicity="1" />
+    <End Type="StudentModel.employeeCategoryDetail" Role="employeeCategoryDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employeeCategory">
+        <PropertyRef Name="employeeCategoryID" />
+      </Principal>
+      <Dependent Role="employeeCategoryDetail">
+        <PropertyRef Name="employeeCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employeeCategoryDetails_permission">
+    <End Type="StudentModel.permission" Role="permission" Multiplicity="1" />
+    <End Type="StudentModel.employeeCategoryDetail" Role="employeeCategoryDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="permission">
+        <PropertyRef Name="permissionId" />
+      </Principal>
+      <Dependent Role="employeeCategoryDetail">
+        <PropertyRef Name="permissionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_employee_employeeCategory">
+    <End Type="StudentModel.employeeCategory" Role="employeeCategory" Multiplicity="1" />
+    <End Type="StudentModel.employee" Role="employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employeeCategory">
+        <PropertyRef Name="employeeCategoryID" />
+      </Principal>
+      <Dependent Role="employee">
+        <PropertyRef Name="employeeCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="JuniorHigh_School">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="elementary_Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="High_Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="junior_Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Activity_Message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LastNew">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="JuniorClass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Course" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="AdultClass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Course" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="ChildClass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Course" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="HighClass">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Course" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="href" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Item" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ScholarShip">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="EDM">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="StudentImpression">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

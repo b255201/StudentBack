@@ -1,0 +1,102 @@
+﻿
+@{
+                /**/
+
+
+                ViewBag.Title = "影音專區新增維護";
+                Layout = "~/Views/Shared/_Layout_Original.cshtml";
+}
+
+<style>
+
+    /* Set width on the form input elements since they're 100% wide by default */
+    input,
+    select,
+    textarea {
+        max-width: 100% !important;
+    }
+</style>
+
+<h1>影音專區新增維護</h1>
+<br /><br />
+@using (Html.BeginForm("Insert", "VideoBack", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "frmSub" }))
+{
+    <div class="form-group">
+
+        <label for="Description" class="col-sm-2 control-label">標題</label>
+        <div class="col-sm-10">
+            <input type="text" id="title" name="title" class="theinput form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <label for="Description" class="col-sm-2 control-label">描述</label>
+        <div class="col-sm-10">
+            <textarea id="Description" name="Description" class="theinput form-control"></textarea>
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Description" class="col-sm-2 control-label">日期</label>
+        <div class="col-sm-10">
+            <input id="Date" name="Date" placeholder="ex:2018-12-05" class="theinput form-control" />
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Description" class="col-sm-2 control-label">影片連結</label>
+        <div class="col-sm-10">
+            <input id="href" name="href" placeholder="請輸入embed影片連結" style="width:100%" class="theinput form-control" />
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label" for="Item">項目</label>
+        <select class="form-control col-sm-3" name="Item" id="Item" style="width:20%;margin-left:15px" class="theinput form-control">
+            <option value="媒體報導">媒體報導</option>
+            <option value="上課實況">上課實況</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3">
+            <button type="button" id="CheckBtn" class="btn btn-default">確定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-3">
+            <label class=" control-label text-danger">@ViewBag.ErrMessage</label>
+        </div>
+    </div>
+}
+
+
+@section Scripts
+{
+    <script>
+        $(function () {
+            $("body").on("click", "#CheckBtn", CheckBtn);
+        });
+
+        function CheckBtn() {
+            if ($("#title").val().trim() == "") {
+                alert("請輸入標題");
+                return false;
+            }
+            if ($("#href").val().trim() == "") {
+                alert("請輸入標題");
+                return false;
+            }
+
+            $("#frmSub").submit();
+        }
+
+    </script>
+}

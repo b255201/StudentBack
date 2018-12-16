@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="StudentModelStoreContainer" CdmEntityContainer="StudentEntities">
+    <EntitySetMapping Name="FreeTrail">
+      <EntityTypeMapping TypeName="StudentModel.FreeTrail">
+        <MappingFragment StoreEntitySet="FreeTrail">
+          <ScalarProperty Name="Memo" ColumnName="Memo" />
+          <ScalarProperty Name="SeqID" ColumnName="SeqID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="LocalPhone" ColumnName="LocalPhone" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employee">
+      <EntityTypeMapping TypeName="StudentModel.employee">
+        <MappingFragment StoreEntitySet="employee">
+          <ScalarProperty Name="modifyTime" ColumnName="modifyTime" />
+          <ScalarProperty Name="createTime" ColumnName="createTime" />
+          <ScalarProperty Name="employeePhoto" ColumnName="employeePhoto" />
+          <ScalarProperty Name="employeeLeaveDate" ColumnName="employeeLeaveDate" />
+          <ScalarProperty Name="employeeOnBoardDate" ColumnName="employeeOnBoardDate" />
+          <ScalarProperty Name="employeeCategoryId" ColumnName="employeeCategoryId" />
+          <ScalarProperty Name="employeeSalt" ColumnName="employeeSalt" />
+          <ScalarProperty Name="employeePwd" ColumnName="employeePwd" />
+          <ScalarProperty Name="employeeAccount" ColumnName="employeeAccount" />
+          <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+          <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employeeCategories">
+      <EntityTypeMapping TypeName="StudentModel.employeeCategory">
+        <MappingFragment StoreEntitySet="employeeCategory">
+          <ScalarProperty Name="employeeCategoryname" ColumnName="employeeCategoryname" />
+          <ScalarProperty Name="employeeCategoryID" ColumnName="employeeCategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="employeeCategoryDetails">
+      <EntityTypeMapping TypeName="StudentModel.employeeCategoryDetail">
+        <MappingFragment StoreEntitySet="employeeCategoryDetails">
+          <ScalarProperty Name="canAccess" ColumnName="canAccess" />
+          <ScalarProperty Name="permissionId" ColumnName="permissionId" />
+          <ScalarProperty Name="employeeCategoryId" ColumnName="employeeCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permissions">
+      <EntityTypeMapping TypeName="StudentModel.permission">
+        <MappingFragment StoreEntitySet="permission">
+          <ScalarProperty Name="permissionName" ColumnName="permissionName" />
+          <ScalarProperty Name="permissionId" ColumnName="permissionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JuniorHigh_School">
+      <EntityTypeMapping TypeName="StudentModel.JuniorHigh_School">
+        <MappingFragment StoreEntitySet="JuniorHigh_School">
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="elementary_Book">
+      <EntityTypeMapping TypeName="StudentModel.elementary_Book">
+        <MappingFragment StoreEntitySet="elementary_Book">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="High_Book">
+      <EntityTypeMapping TypeName="StudentModel.High_Book">
+        <MappingFragment StoreEntitySet="High_Book">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="junior_Book">
+      <EntityTypeMapping TypeName="StudentModel.junior_Book">
+        <MappingFragment StoreEntitySet="junior_Book">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Activity_Message">
+      <EntityTypeMapping TypeName="StudentModel.Activity_Message">
+        <MappingFragment StoreEntitySet="Activity_Message">
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LastNews">
+      <EntityTypeMapping TypeName="StudentModel.LastNew">
+        <MappingFragment StoreEntitySet="LastNews">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JuniorClasses">
+      <EntityTypeMapping TypeName="StudentModel.JuniorClass">
+        <MappingFragment StoreEntitySet="JuniorClass">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdultClasses">
+      <EntityTypeMapping TypeName="StudentModel.AdultClass">
+        <MappingFragment StoreEntitySet="AdultClass">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChildClasses">
+      <EntityTypeMapping TypeName="StudentModel.ChildClass">
+        <MappingFragment StoreEntitySet="ChildClass">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HighClasses">
+      <EntityTypeMapping TypeName="StudentModel.HighClass">
+        <MappingFragment StoreEntitySet="HighClass">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Course" ColumnName="Course" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Videos">
+      <EntityTypeMapping TypeName="StudentModel.Video">
+        <MappingFragment StoreEntitySet="Video">
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="href" ColumnName="href" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ScholarShips">
+      <EntityTypeMapping TypeName="StudentModel.ScholarShip">
+        <MappingFragment StoreEntitySet="ScholarShip">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
