@@ -1,0 +1,315 @@
+﻿
+@{
+    ViewBag.Title = "行事曆課程維護";
+    Layout = "~/Views/Shared/_Layout_Original.cshtml";
+}
+
+
+@section heads
+{
+
+    @Styles.Render("~/Content/css/datatables")
+    <style>
+        table.dataTable tbody td {
+            vertical-align: middle;
+        }
+
+        tr {
+            height: 100px;
+        }
+    </style>
+
+}
+
+<h1>行事曆課程維護</h1>
+<br /><br />
+<div class="table-responsive">
+    <table class="table table-bordered ">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Su</th>
+                <th>Mo</th>
+                <th>Tu</th>
+                <th>We</th>
+                <th>Th</th>
+                <th>Fr</th>
+                <th>Sa</th>
+            </tr>
+        </thead>
+        <tbody>
+                @for (var i = 0; i < 3; i++)
+                {
+
+                    if (i == 0)
+                    {
+                        <tr>
+                            @for (var x = 0; x < 8; x++)
+                            {
+                                if (x == 0)
+                                {
+                                    <td>上午</td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @foreach (var data in ViewBag.Data)
+                                        {
+                                            if (data.Schedule == "m_" + x)
+                                            {
+                                                <div style="background-color:rosybrown;color:Highlight;margin-bottom:1px;"><a href="@data.Link" target="_blank">@data.Title</a></div>
+                                            }
+
+                                        }
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+                    else if (i == 1)
+                    {
+                        <tr>
+                            @for (var x = 0; x < 8; x++)
+                            {
+                                if (x == 0)
+                                {
+                                    <td>下午</td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @foreach (var data in ViewBag.Data)
+                                        {
+                                            if (data.Schedule == "a_" + x)
+                                            {
+                                                <div style="background-color:rosybrown;color:Highlight;margin-bottom:1px;"><a href="@data.Link" target="_blank">@data.Title</a></div>
+                                            }
+
+                                        }
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            @for (var x = 0; x < 8; x++)
+                            {
+                                if (x == 0)
+                                {
+                                    <td>晚上</td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        @foreach (var data in ViewBag.Data)
+                                        {
+                                            if (data.Schedule == "e_" + x)
+                                            {
+                                                <div style="background-color:rosybrown;color:Highlight;margin-bottom:1px;"><a href="@data.Link" target="_blank">@data.Title</a></div>
+                                            }
+
+                                        }
+                                    </td>
+                                }
+                            }
+                        </tr>
+                    }
+                }        
+            </tbody>
+    </table>
+</div>
+<!--顯示資料-->
+<table id="main" class="display" cellspacing="0" style="width:100%">
+    <thead>
+        <tr>
+
+            <th style="width:10%" class="control-label ">序號</th>
+            <th style="width:10%" class="control-label ">標題</th>
+            <th style="width:10%" class="control-label ">連結</th>
+            <th style="width:10%" class="control-label ">日期</th>
+            <th style="width:10%" class="control-label ">刪除</th>
+        </tr>
+    </thead>
+</table>
+
+@section Scripts
+{
+
+    @Scripts.Render("~/bundles/datatables")
+
+    <script>
+        //ddtrS, ddtrE, noperS, noperE, naper
+        $(document).ready(function () {
+            onSearch();
+        });
+
+        function onSearch() {
+
+
+            $("#main").DataTable({
+                "responsive": true,
+                "processing": true,
+                "serverSide": false,
+                "bAutoWidth": false,
+                "bDestroy": true,
+                "bInfo": true,
+                "bFilter": false,
+                "bSortable": true,
+                "orderMulti": false,
+                "bPaginate": true,
+                "bLengthChange": false,
+                "dom": "<'clear'>frtip",    //無工具列
+                "displayStart": 0,
+                "pageLength": 10,
+                "order": [[0, "asc"]],
+                "ajax": {
+                    "type": "Post",
+                    "url": '@Url.Action("Search")',
+                    "error": function (msg) {
+                        alert(msg);
+                    }
+                },
+                "sServerMethod": "post",
+                "columns": [
+                    { "data": "Id" },
+                    { "data": "Title" },
+                    { "data": "Link" },
+                    { "data": "Schedule" },
+                    { "data": "Id" },
+                ],
+                "createdRow": function (row, data, index) {
+                    var $lnkcode = $("<a style='cursor: pointer'></a>");
+                    $lnkcode.text("刪除");
+                    $lnkcode.attr("onclick", "onDelete('" + data.Id + "' )");
+                    $("td", row).eq(4).text("").append($lnkcode);
+
+                    var $lnkcode1 = $("<label></label>");
+                    $lnkcode1.text(changedate(data.Schedule));
+                    $("td", row).eq(3).text("").append($lnkcode1);
+
+                },
+                "language": {
+                    "info": "目前第 _START_ - _END_ 筆 ／ 共計 _TOTAL_ 筆",
+                    "infoEmpty": "0筆",
+                    "zeroRecords": "查無符合條件資料",
+                    "lengthMenu": "每頁顯示 _MENU_ 筆資料",
+                    "infoFiltered": "(從 _MAX_ 筆資料中篩選)",
+                    "paginate": {
+                        "first": "第一頁",
+                        "last": "最後一頁",
+                        "next": "下一頁",
+                        "previous": "上一頁"
+                    }
+                }
+            })
+        };
+
+
+        function changedate(data)
+        {
+            switch (data) {
+                case "m_1":
+                    return day = "星期一早上";
+                    break;
+                case "m_2":
+                    return day = "星期二早上";
+                    break;
+                case "m_3":
+                    return day = "星期三早上";
+                    break;
+                case "m_4":
+                    return day = "星期四早上";
+                    break;
+                case "m_5":
+                    return day = "星期五早上";
+                    break;
+                case "m_6":
+                    return day = "星期六早上";
+                    break;
+                case "m_7":
+                    return day = "星期日早上";
+                    break;
+                case "a_1":
+                    return day = "星期一下午";
+                    break;
+                case "a_2":
+                    return day = "星期二下午";
+                    break;
+                case "a_3":
+                    return day = "星期三下午";
+                    break;
+                case "a_4":
+                    return day = "星期四下午";
+                    break;
+                case "a_5":
+                    return day = "星期五下午";
+                    break;
+                case "a_6":
+                    return day = "星期六早上";
+                    break;
+                case "a_7":
+                    return day = "星期日早上";
+                    break;
+                case "e_1":
+                    return day = "星期一晚上";
+                    break;
+                case "e_2":
+                    return day = "星期二晚上";
+                    break;
+                case "e_3":
+                    return day = "星期三晚上";
+                    break;
+                case "e_4":
+                    return day = "星期四晚上";
+                    break;
+                case "e_5":
+                    return day = "星期五晚上";
+                    break;
+                case "e_6":
+                    return day = "星期六晚上";
+                    break;
+                case "e_7":
+                    return day = "星期日晚上";
+                    break;
+                default:
+                    break;
+                // code block
+            }
+        }
+
+        function onDelete(Id)
+        {
+            var message = confirm("確定刪除嗎？");
+            if (message == true)
+            {
+
+                $.ajax({
+                    "url": '@Url.Action("Delete")',
+                    type: "POST",
+                    data: {
+                        "Id": Id,
+                    },
+                    success: function (data) {
+                        if (data.Status == "0")
+                        {
+                            alert('' + data.StatusDesc);
+                            var url ='@Url.Action("Index")';
+                            window.open(url, "_self");
+                        } else {
+                            var message = data.StatusDesc;
+                            alert(message);
+                        }
+                    },
+                    error: function (err) {
+                        alert(err.Status);
+                    }
+                });
+            }
+        }
+
+
+
+    </script>
+}

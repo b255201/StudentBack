@@ -190,5 +190,36 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EDMs">
+      <EntityTypeMapping TypeName="StudentModel.EDM">
+        <MappingFragment StoreEntitySet="EDM">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="int" ColumnName="int" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StudentImpressions">
+      <EntityTypeMapping TypeName="StudentModel.StudentImpression">
+        <MappingFragment StoreEntitySet="StudentImpression">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LessonCalendars">
+      <EntityTypeMapping TypeName="StudentModel.LessonCalendar">
+        <MappingFragment StoreEntitySet="LessonCalendar">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Schedule" ColumnName="Schedule" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

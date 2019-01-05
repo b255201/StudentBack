@@ -31,6 +31,13 @@
     <Property Name="Course" Type="nvarchar(max)" />
     <Property Name="CreateTime" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="EDM">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <EntityType Name="elementary_Book">
     <Key>
       <PropertyRef Name="Id" />
@@ -143,6 +150,16 @@
     <Property Name="Description" Type="nvarchar(max)" />
     <Property Name="CreateTime" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="LessonCalendar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="Schedule" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
   <EntityType Name="permission">
     <Key>
       <PropertyRef Name="permissionId" />
@@ -151,6 +168,17 @@
     <Property Name="permissionName" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="ScholarShip">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Date" Type="nvarchar" MaxLength="15" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="StudentImpression">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -213,6 +241,7 @@
     <EntitySet Name="Activity_Message" EntityType="Self.Activity_Message" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AdultClass" EntityType="Self.AdultClass" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChildClass" EntityType="Self.ChildClass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EDM" EntityType="Self.EDM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="elementary_Book" EntityType="Self.elementary_Book" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="employeeCategory" EntityType="Self.employeeCategory" Schema="dbo" store:Type="Tables" />
@@ -224,8 +253,10 @@
     <EntitySet Name="JuniorClass" EntityType="Self.JuniorClass" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JuniorHigh_School" EntityType="Self.JuniorHigh_School" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LastNews" EntityType="Self.LastNews" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LessonCalendar" EntityType="Self.LessonCalendar" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="permission" EntityType="Self.permission" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ScholarShip" EntityType="Self.ScholarShip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StudentImpression" EntityType="Self.StudentImpression" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_employee_employeeCategory" Association="Self.FK_employee_employeeCategory">
       <End Role="employeeCategory" EntitySet="employeeCategory" />

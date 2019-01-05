@@ -46,6 +46,7 @@
     <EntitySet Name="ScholarShips" EntityType="StudentModel.ScholarShip" />
     <EntitySet Name="EDMs" EntityType="StudentModel.EDM" />
     <EntitySet Name="StudentImpressions" EntityType="StudentModel.StudentImpression" />
+    <EntitySet Name="LessonCalendars" EntityType="StudentModel.LessonCalendar" />
   </EntityContainer>
   <EntityType Name="employee">
     <Key>
@@ -264,6 +265,16 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Date" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
     <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="LessonCalendar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Schedule" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
 </Schema>

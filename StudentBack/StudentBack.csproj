@@ -5381,7 +5381,6 @@
     <Content Include="Image\LiuIndex\02.png" />
     <Content Include="Image\LiuIndex\1.jpg" />
     <Content Include="Image\LiuIndex\2.jpg" />
-    <Content Include="Image\ScholarShip\a.png" />
     <Content Include="Models\Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Model1.Context.cs</LastGenOutput>
@@ -6123,7 +6122,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -6170,6 +6169,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JuniorClassController.cs" />
     <Compile Include="Controllers\junior_BookController.cs" />
+    <Compile Include="Controllers\LessonCalendarController.cs" />
     <Compile Include="Controllers\LessonVideoController.cs" />
     <Compile Include="Controllers\LiuIndexController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -6226,6 +6226,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LastNew.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LessonCalendar.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -6324,6 +6327,9 @@
     <Content Include="Views\StudentImpression\Index.cshtml" />
     <Content Include="Views\StudentImpression\Insert.cshtml" />
     <Content Include="Views\ClientEmail\Index.cshtml" />
+    <Content Include="Views\LessonCalendar\Index.cshtml" />
+    <Content Include="Views\LessonCalendar\Insert.cshtml" />
+    <Content Include="Views\LessonCalendar\test.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -6337,6 +6343,7 @@
     <Folder Include="Content\assets\global\plugins\angularjs\plugins\angular-file-upload\uploads\" />
     <Folder Include="Image\Child_Lesson\" />
     <Folder Include="Image\JuniorHigh_School\" />
+    <Folder Include="Image\ScholarShip\" />
     <Folder Include="Image\StudentImpression\" />
     <Folder Include="Views\LessonVideo\" />
   </ItemGroup>
