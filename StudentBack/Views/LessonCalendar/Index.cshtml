@@ -28,13 +28,14 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Su</th>
-                <th>Mo</th>
-                <th>Tu</th>
-                <th>We</th>
-                <th>Th</th>
-                <th>Fr</th>
-                <th>Sa</th>
+
+                <th>星期一</th>
+                <th>星期二</th>
+                <th>星期三</th>
+                <th>星期四</th>
+                <th>星期五</th>
+                <th>星期六</th>
+                <th>星期日</th>
             </tr>
         </thead>
         <tbody>
@@ -57,7 +58,7 @@
                                         {
                                             if (data.Schedule == "m_" + x)
                                             {
-                                                <div style="background-color:rosybrown;color:Highlight;margin-bottom:1px;"><a href="@data.Link" target="_blank">@data.Title</a></div>
+                                                <div style="background-color:rosybrown;color:Highlight;margin-bottom:1px;"><a href="@data.Link" target="_blank">@data.Department@data.Title</a></div>
                                             }
 
                                         }
@@ -82,7 +83,7 @@
                                         {
                                             if (data.Schedule == "a_" + x)
                                             {
-                                                <div style="background-color:rosybrown;color:Highlight;margin-bottom:1px;"><a href="@data.Link" target="_blank">@data.Title</a></div>
+                                                <div style="background-color:rosybrown;color:Highlight;margin-bottom:1px;"><a href="@data.Link" target="_blank">@data.Department@data.Title</a></div>
                                             }
 
                                         }
@@ -107,7 +108,7 @@
                                         {
                                             if (data.Schedule == "e_" + x)
                                             {
-                                                <div style="background-color:rosybrown;color:Highlight;margin-bottom:1px;"><a href="@data.Link" target="_blank">@data.Title</a></div>
+                                                <div style="background-color:rosybrown;color:Highlight;margin-bottom:1px;"><a href="@data.Link" target="_blank">@data.Department@data.Title</a></div>
                                             }
 
                                         }

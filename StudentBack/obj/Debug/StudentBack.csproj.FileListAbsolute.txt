@@ -328,3 +328,4 @@ C:\Users\User\Documents\GitHub\StudentBack\StudentBack\obj\Debug\zh-tw\StudentBa
 C:\Users\User\Documents\GitHub\StudentBack\StudentBack\obj\Debug\StudentBack.csproj.CopyComplete
 C:\Users\User\Documents\GitHub\StudentBack\StudentBack\obj\Debug\StudentBack.dll
 C:\Users\User\Documents\GitHub\StudentBack\StudentBack\obj\Debug\StudentBack.pdb
+C:\Users\User\Documents\GitHub\StudentBack\StudentBack\obj\Debug\StudentBack.csprojAssemblyReference.cache

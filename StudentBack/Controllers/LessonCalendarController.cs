@@ -38,6 +38,7 @@ namespace StudentBack.Controllers
                          {
                              Id = Row.Id,
                              Title = Row.Title,
+                             Department = Row.Department,
                              Link = Row.Link,
                              Schedule = Row.Schedule,
                          };
@@ -65,6 +66,7 @@ namespace StudentBack.Controllers
             int i = MaxId + 1;
             _LessonCalendar.Title = form["Title"];
             _LessonCalendar.Link = form["Link"];
+            _LessonCalendar.Department = form["Department"];
             _LessonCalendar.Schedule = form["Time"] + "_" + form["Date"];
             _LessonCalendar.CreateTime = DateTime.Now;
             repo.Create(_LessonCalendar);

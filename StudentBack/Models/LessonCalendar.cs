@@ -19,5 +19,6 @@ namespace StudentBack.Models
         public string Link { get; set; }
         public string Schedule { get; set; }
         public System.DateTime CreateTime { get; set; }
+        public string Department { get; set; }
     }
 }

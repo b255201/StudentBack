@@ -213,6 +213,7 @@
     <EntitySetMapping Name="LessonCalendars">
       <EntityTypeMapping TypeName="StudentModel.LessonCalendar">
         <MappingFragment StoreEntitySet="LessonCalendar">
+          <ScalarProperty Name="Department" ColumnName="Department" />
           <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
           <ScalarProperty Name="Schedule" ColumnName="Schedule" />
           <ScalarProperty Name="Link" ColumnName="Link" />

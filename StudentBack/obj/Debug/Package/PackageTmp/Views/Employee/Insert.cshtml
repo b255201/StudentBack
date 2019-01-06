@@ -1,0 +1,81 @@
+﻿
+
+<h1>員工新增維護</h1>
+
+@using (Html.BeginForm("Insert", "Employee", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+
+<div class="form-horizontal">
+
+    <div class="form-group">
+        <label for="employeeName" class="col-sm-2 control-label">員工姓名</label>
+        <div class="col-sm-3">
+            <input type="text" id="employeeName" name="employeeName" class="theinput form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="employeeAccount" class="col-sm-2 control-label">員工帳號</label>
+        <div class="col-sm-3">
+            <input type="text" id="employeeAccount" name="employeeAccount" class="theinput form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="employeePwd" class="col-sm-2 control-label">密碼</label>
+        <div class="col-sm-3">
+            <input type="text" id="employeePwd" name="employeePwd" class="theinput form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="pwdreconfirm" class="col-sm-2 control-label">再確認密碼</label>
+        <div class="col-sm-3">
+            <input type="password" id="pwdreconfirm" name="pwdreconfirm" class="theinput form-control" />
+        </div>
+    </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button id="addsubmit" type="button" onclick="insert()" class="btn btn-warning">確認</button>
+                @*<button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>*@
+            </div>
+        </div>
+    </div>
+    }
+
+
+        <script>
+           
+     function insert() {
+             $.ajax({
+                url: '@Url.Action("Insert")',
+                type: "POST",
+                data: {
+                    "employeeName": $("#employeeName").val(),
+                    "employeeAccount": $("#employeeAccount").val(),
+                    "employeePwd": $("#employeePwd").val(),
+                    "pwdreconfirm": $("#pwdreconfirm").val()
+                },
+                success: function (data) {
+
+                    if (data.Status == "0") {
+                        ///跳至新增
+                        alert("新增成功");                     
+                        window.open( '@Url.Action("Index")', "_self");
+                    }
+                    else if (data.Status == "1") {
+                        var message = data.Message;
+                        alert('' + data.Message);
+                    }
+                },
+                error: function (err) {
+
+                    alert(err.status);
+                }
+            });
+
+     }
+
+        </script>
+
