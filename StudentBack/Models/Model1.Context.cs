@@ -45,5 +45,6 @@ namespace StudentBack.Models
         public virtual DbSet<EDM> EDMs { get; set; }
         public virtual DbSet<StudentImpression> StudentImpressions { get; set; }
         public virtual DbSet<LessonCalendar> LessonCalendars { get; set; }
+        public virtual DbSet<LessonOpt> LessonOpts { get; set; }
     }
 }

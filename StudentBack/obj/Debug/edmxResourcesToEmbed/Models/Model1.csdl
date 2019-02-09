@@ -47,6 +47,7 @@
     <EntitySet Name="EDMs" EntityType="StudentModel.EDM" />
     <EntitySet Name="StudentImpressions" EntityType="StudentModel.StudentImpression" />
     <EntitySet Name="LessonCalendars" EntityType="StudentModel.LessonCalendar" />
+    <EntitySet Name="LessonOpts" EntityType="StudentModel.LessonOpt" />
   </EntityContainer>
   <EntityType Name="employee">
     <Key>
@@ -277,5 +278,13 @@
     <Property Name="Schedule" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="Department" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LessonOpt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Seq" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

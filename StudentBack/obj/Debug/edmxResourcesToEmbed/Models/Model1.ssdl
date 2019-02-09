@@ -161,6 +161,14 @@
     <Property Name="Schedule" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CreateTime" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="LessonOpt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Seq" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
   <EntityType Name="permission">
     <Key>
       <PropertyRef Name="permissionId" />
@@ -255,6 +263,7 @@
     <EntitySet Name="JuniorHigh_School" EntityType="Self.JuniorHigh_School" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LastNews" EntityType="Self.LastNews" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LessonCalendar" EntityType="Self.LessonCalendar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LessonOpt" EntityType="Self.LessonOpt" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="permission" EntityType="Self.permission" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ScholarShip" EntityType="Self.ScholarShip" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="StudentImpression" EntityType="Self.StudentImpression" Schema="dbo" store:Type="Tables" />

@@ -166,6 +166,14 @@
           <Property Name="Schedule" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="LessonOpt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Seq" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
         <EntityType Name="permission">
           <Key>
             <PropertyRef Name="permissionId" />
@@ -260,6 +268,7 @@
           <EntitySet Name="JuniorHigh_School" EntityType="Self.JuniorHigh_School" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LastNews" EntityType="Self.LastNews" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LessonCalendar" EntityType="Self.LessonCalendar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LessonOpt" EntityType="Self.LessonOpt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="permission" EntityType="Self.permission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ScholarShip" EntityType="Self.ScholarShip" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StudentImpression" EntityType="Self.StudentImpression" Schema="dbo" store:Type="Tables" />
@@ -328,6 +337,7 @@
           <EntitySet Name="EDMs" EntityType="StudentModel.EDM" />
           <EntitySet Name="StudentImpressions" EntityType="StudentModel.StudentImpression" />
           <EntitySet Name="LessonCalendars" EntityType="StudentModel.LessonCalendar" />
+          <EntitySet Name="LessonOpts" EntityType="StudentModel.LessonOpt" />
         </EntityContainer>
         <EntityType Name="employee">
           <Key>
@@ -559,6 +569,14 @@
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Department" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="LessonOpt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seq" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -782,6 +800,15 @@
                 <ScalarProperty Name="Schedule" ColumnName="Schedule" />
                 <ScalarProperty Name="Link" ColumnName="Link" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LessonOpts">
+            <EntityTypeMapping TypeName="StudentModel.LessonOpt">
+              <MappingFragment StoreEntitySet="LessonOpt">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Seq" ColumnName="Seq" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
