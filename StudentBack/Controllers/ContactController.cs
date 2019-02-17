@@ -57,7 +57,8 @@ namespace StudentBack.Controllers
                              Phone = Row.Phone,
                              LocalPhone = Row.LocalPhone,
                              Course = Row.Course,
-                             Time= DBNull.Value.Equals(Row.CreateTime) ? "" :Common.lang.DateTimeUtil.ToYMD(Row.CreateTime)
+                             Memo=Row.Memo,
+                             Time = DBNull.Value.Equals(Row.CreateTime) ? "" :Common.lang.DateTimeUtil.ToYMD(Row.CreateTime)
                          };
             JQueryDataTableResponse<ContactViewModel> jqDataTableRs = JQueryDataTableHelper<ContactViewModel>.GetResponse(1, totalLen, totalLen, result.ToList());
             return Json(jqDataTableRs);

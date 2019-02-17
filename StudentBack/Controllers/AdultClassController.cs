@@ -158,5 +158,125 @@ namespace StudentBack.Controllers
 
         }
         #endregion
+
+        [HttpGet]
+        public ActionResult Edit(string Id)
+        {
+            AdultClass _AdultClass = repo.GetByID(int.Parse(Id));
+            ViewBag.Id = _AdultClass.Id;
+            ViewBag.title = _AdultClass.title;
+            ViewBag.Description = _AdultClass.Description;
+            ViewBag.InitImage = _AdultClass.Image;
+            ViewBag.Course = _AdultClass.Course;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(FormCollection form, IEnumerable<HttpPostedFileBase> Images)
+        {
+            if (form["title"] == "")
+            {
+                ViewBag.ErrMessage = "請輸入標題,請檢查";
+                return View();
+            }
+            if (form["Course"] == "")
+            {
+                ViewBag.ErrMessage = "請選擇課程,請檢查";
+                return View();
+            }
+            var q = repo.GetAll().ToList();
+            var result = (from Row in q
+                          select new AdultClass
+                          {
+                              Id = Row.Id,
+                              title = Row.title,
+                              Description = Row.Description,
+                              Image = Row.Image,
+                          }).OrderByDescending(x => x.Id);
+
+            AdultClass _AdultClass = new AdultClass();
+            var ImageCount = 1;
+            var img = "";
+            var InitCount = 0;
+            if (Images != null)
+            {
+                foreach (var Image in Images)
+                {
+                    if (Image != null)
+                    {
+                        //判斷圖片名稱是否重複
+                        var rptimg = (from Row in q
+                                      select new LessonViewModel
+                                      {
+                                          Id = Row.Id,
+                                          Image = Row.Image
+                                      }).Where(x => x.Id != int.Parse(form["Id"]));
+                        if (rptimg != null)
+                        {
+                            string[] initImagAry = form["InitImage"].Split(',');
+
+                            foreach (var x in rptimg)
+                            {
+                                string[] ary = x.Image.Split(',');
+                                foreach (string y in ary)
+                                {
+                                    foreach (var g in initImagAry)
+                                    {
+                                        if (g == y)
+                                        {
+                                        }
+                                        else
+                                        {
+                                            if (y == Image.FileName)
+                                            {
+                                                ViewBag.ErrMessage = "已有圖片名稱：" + Image.FileName + "，請檢查";
+                                                return View();
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        //先刪除圖片檔案
+                        if (InitCount == 0)
+                        {
+                            foreach (var x in form["InitImage"].Split(','))
+                            {
+                                if (x != "")
+                                {
+                                    string strPath1 = string.Format("~/Image/Adult_Lesson/{0}", x);
+                                    var fullPath = Request.MapPath(strPath1);
+                                    System.IO.File.Delete(fullPath);
+                                }
+                            }
+                            InitCount = 1;
+                        }
+
+                        string strPath = Request.PhysicalApplicationPath + @"Image\Adult_Lesson\" + Image.FileName;
+                        Image.SaveAs(strPath);
+                        if (ImageCount == 1)
+                        {
+                            img = Image.FileName;
+                        }
+                        else
+                        {
+                            img += "," + Image.FileName;
+                        }
+                        ImageCount++;
+                    }
+                }
+                _AdultClass.Image = img;
+            }
+            _AdultClass.Id = int.Parse(form["Id"]);
+            _AdultClass.title = form["title"];
+            _AdultClass.Description = form["Description"];
+            _AdultClass.Course = form["Course"];
+            _AdultClass.CreateTime = DateTime.Now;
+            repo.Delete(repo.GetByID(int.Parse(form["Id"])));
+            repo.Create(_AdultClass);
+
+            return RedirectToAction("Index");
+        }
+
     }
 }

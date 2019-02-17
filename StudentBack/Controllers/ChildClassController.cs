@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace StudentBack.Controllers
 {
-    [AuthenticateUser]
+    //[AuthenticateUser]
     public class ChildClassController : Controller
     {
         private Repository<ChildClass> repo = new Repository<ChildClass>();
@@ -159,5 +159,126 @@ namespace StudentBack.Controllers
 
         }
         #endregion
+
+        [HttpGet]
+        public ActionResult Edit(string Id)
+        {
+            ChildClass _ChildClass = repo.GetByID(int.Parse(Id));
+            ViewBag.Id = _ChildClass.Id;
+            ViewBag.title = _ChildClass.title;
+            ViewBag.Description = _ChildClass.Description;
+            ViewBag.InitImage = _ChildClass.Image;
+            ViewBag.Course = _ChildClass.Course;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(FormCollection form, IEnumerable<HttpPostedFileBase> Images)
+        {
+            if (form["title"] == "")
+            {
+                ViewBag.ErrMessage = "請輸入標題,請檢查";
+                return View();
+            }
+            if (form["Course"] == "")
+            {
+                ViewBag.ErrMessage = "請選擇課程,請檢查";
+                return View();
+            }
+            var q = repo.GetAll().ToList();
+            var result = (from Row in q
+                          select new ChildClass
+                          {
+                              Id = Row.Id,
+                              title = Row.title,
+                              Description = Row.Description,
+                              Image = Row.Image,
+                          }).OrderByDescending(x => x.Id);
+
+            ChildClass _ChildClass = new ChildClass();
+            var ImageCount = 1;
+            var img = "";
+            var InitCount = 0;
+            if (Images != null)
+            {
+                foreach (var Image in Images)
+                {
+                    if (Image != null)
+                    {
+                        //判斷圖片名稱是否重複
+                        var rptimg = (from Row in q
+                                      select new LessonViewModel
+                                      {
+                                          Id=Row.Id,
+                                          Image = Row.Image
+                                      }).Where(x=>x.Id!= int.Parse(form["Id"]));
+                        if (rptimg != null)
+                        {
+                            string[] initImagAry = form["InitImage"].Split(',');
+                                                   
+                            foreach (var x in rptimg)
+                            {
+                                string[] ary = x.Image.Split(',');                              
+                                foreach (string y in ary)
+                                {
+                                    foreach(var g in initImagAry)
+                                    {
+                                        if (g == y)
+                                        {
+                                        }
+                                        else
+                                        {
+                                            if (y == Image.FileName)
+                                            {
+                                                ViewBag.ErrMessage = "已有圖片名稱：" + Image.FileName + "，請檢查";
+                                                return View();
+                                            }
+                                        }
+                                    }                               
+                                }
+                            }
+                        }
+                        //先刪除圖片檔案
+                        if (InitCount == 0)
+                        {
+                            foreach (var x in form["InitImage"].Split(','))
+                            {
+                                if (x != "")
+                                {
+                                    string strPath1 = string.Format("~/Image/Child_Lesson/{0}", x);
+                                    var fullPath = Request.MapPath(strPath1);
+                                    System.IO.File.Delete(fullPath);
+                                }
+                            }
+                            InitCount = 1;
+                        }
+                  
+                        string strPath = Request.PhysicalApplicationPath + @"Image\Child_Lesson\" + Image.FileName;
+                        Image.SaveAs(strPath);
+                        if (ImageCount == 1)
+                        {
+                            img = Image.FileName;
+                        }
+                        else
+                        {
+                            img += "," + Image.FileName;
+                        }
+                        ImageCount++;
+                    }
+                }
+                _ChildClass.Image = img;
+            }
+            _ChildClass.Id = int.Parse(form["Id"]);
+            _ChildClass.title = form["title"];
+            _ChildClass.Description = form["Description"];
+            _ChildClass.Course = form["Course"];
+            _ChildClass.CreateTime = DateTime.Now;
+            repo.Delete(repo.GetByID(int.Parse(form["Id"])));
+            repo.Create(_ChildClass);
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

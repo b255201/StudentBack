@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "預約試聽課程表清單新增";
+    Layout = "~/Views/Shared/_Layout_Original.cshtml";
+}
+<link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+
+<h1>預約試聽課程表清單新增</h1>
+<br /><br />
+@using (Html.BeginForm("Insert", "LessonOpt", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data", id = "frmSub" }))
+{
+    <div class="form-group">
+
+        <label for="Seq" class="col-sm-2 control-label">序號</label>
+        <div class="col-sm-3">
+            <input type="text" id="Seq" name="Seq" value="@ViewBag.Seq" class="theinput form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        <label for="Description" class="col-sm-2 control-label">描述</label>
+        <div class="col-sm-3">
+            <input type="text" id="Description" name="Description" class="theinput form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-3">
+            <button type="button" id="CheckBtn" class="btn btn-default">確定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+        <div class="col-sm-3">
+            <label class=" control-label text-danger">@ViewBag.ErrMessage</label>
+        </div>
+    </div>
+}
+
+
+@section Scripts
+{
+  
+    <script>
+        $(function () {
+
+            $("body").on("click", "#CheckBtn", CheckBtn);
+        });
+        function CheckBtn() {
+
+            if ($("#Description").val().trim() == "")
+            {
+                alert("請輸入課程名稱");
+                return false;
+            }
+
+            if ($("#Seq").val().trim() == "") {
+                alert("請輸入序號");
+                return false;
+            }
+            $("#frmSub").submit();
+        }
+    </script>
+}

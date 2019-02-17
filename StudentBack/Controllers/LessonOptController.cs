@@ -47,12 +47,13 @@ namespace StudentBack.Controllers
                           select new LessonOpt
                           {
                               Id = Row.Id,
+                              Seq=Row.Seq,
                               Description = Row.Description,
                           }).OrderByDescending(x => x.Id);
             var MaxId = 0;
             if (result.Count() != 0)
             {
-                MaxId = int.Parse(result.First().Id.ToString());
+                MaxId = int.Parse(result.First().Seq.ToString());
             }
             int i = MaxId + 1;
             ViewBag.Seq = i;

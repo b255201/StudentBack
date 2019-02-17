@@ -28,6 +28,7 @@
             <th style="width:10%" class="control-label ">描述</th>
             @*<th style="width:10%" class="control-label ">圖片</th>*@
             <th style="width:10%" class="control-label ">課程</th>
+            <th style="width:10%" class="control-label ">編輯</th>
             <th style="width:10%" class="control-label ">刪除</th>
         </tr>
     </thead>
@@ -79,6 +80,7 @@
                     { "data": "Description" },
                     { "data": "Course" },
                     { "data": "Id" },
+                    { "data": "Id" }
                 ],
                 "createdRow": function (row, data, index) {
                     @*var $lnkcode = $("<img class='img - thumbnail thumb' style='width:50px; heigh:40px;' />");
@@ -87,9 +89,14 @@
 
 
                     var $lnkcode = $("<a style='cursor: pointer'></a>");
+                    $lnkcode.text("編輯");
+                    $lnkcode.attr("onclick", "onEdit('" + data.Id + "' )");
+                    $("td", row).eq(4).text("").append($lnkcode);
+
+                    var $lnkcode = $("<a style='cursor: pointer'></a>");
                     $lnkcode.text("刪除");
                     $lnkcode.attr("onclick", "onDelete('" + data.Id + "' )");
-                    $("td", row).eq(4).text("").append($lnkcode);
+                    $("td", row).eq(5).text("").append($lnkcode);
 
                 },
                 "language": {
@@ -107,7 +114,10 @@
                 }
             })
         };
-
+        function onEdit(Id) {
+            var url = "/HighClass/Edit/" + Id;
+            window.location.href = url;
+        }
         function onDelete(Id)
         {
             var message = confirm("確定刪除嗎？");

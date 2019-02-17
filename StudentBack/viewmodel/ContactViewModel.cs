@@ -18,5 +18,6 @@ namespace StudenBack.ViewModel
         public string Course { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
         public string Time { get; set; }
+        public string Memo { get; set; }
     }
 }
