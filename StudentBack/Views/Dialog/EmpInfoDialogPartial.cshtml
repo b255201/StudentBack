@@ -1,0 +1,112 @@
+﻿
+
+
+
+<section>
+    @using (Html.BeginForm("EmpInfoPaging", "Dialog", FormMethod.Post, new { @id = "fmDialog", @class = "form-horizontal", role = "form" }))
+    {
+        <div class="form-group">
+            <label for="txtcdBr" class="col-sm-2 control-label">員工編號：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="txtcdBr" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="txtnaBr" class="col-sm-2 control-label">員工姓名：</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="txtnaBr" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" id="dialogQuery" class="btn btn-success" >搜尋</button>
+            </div>
+        </div>
+        @Html.Hidden("Hiddencode", "abc")
+        @Html.Hidden("Hiddenname", "xyz")
+    }
+</section>
+
+<table class="display" id="dialogMain" cellspacing="0">
+    <thead>
+        <tr>
+            <th>單位代號</th>
+            <th>單位名稱</th>
+        </tr>
+    </thead>
+</table>
+
+
+
+
+    <script>
+        $(function () {
+            $("body").on("click", "#dialogQuery", dialogQuery);
+            dialogQuery();
+        });
+        function dialogQuery() {
+            $("#dialogMain").dataTable({
+                "responsive": true,
+                "processing": true,
+                "serverSide": true,
+                "orderMulti": false,
+                "bFilter": false,
+                "bSortable": true,
+                "bDestroy": true,
+                "pageLength": 10,
+                "order": [[0, "asc"]],
+                "ajax": {
+                    "type": "POST",
+                    "url": "/Dialog/EmpInfoPaging",
+                    "data": {
+                        "cdBr": $("#txtcdBr").val(),
+                        "naBr": $("#txtnaBr").val()
+                    },
+                    "error": function (msg) {
+                        alert(msg);
+                    }
+                },
+                "sServerMethod": "post",
+                "dom": "<'clear'>frtip",
+                "columns": [
+                    { "data": "employeeName" },
+                    { "data": "employeeAccount" }
+                ],
+                "createdRow": function (row, data, index) {
+
+                    var $lnkcode = $("<a style='cursor: pointer'></a>");
+                    $lnkcode.text(data.employeeName);
+                    $lnkcode.attr("onclick", "setmydata('" + data.employeeAccount + "','" + data.employeeAccount + "')");
+                    $("td", row).eq(0).text("").append($lnkcode);
+                },
+                "language": {
+                    "lengthMenu": "Display _MENU_ records per page",
+                    "zeroRecords": "查無符合條件資料",
+                    "info": "第 _PAGE_ 頁, 共 _PAGES_ 頁",
+                    "infoEmpty": "0筆",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "first": "第一頁",
+                        "last": "最後一頁",
+                        "next": "下一頁",
+                        "previous": "上一頁"
+                    },
+                }
+            });
+        }
+
+        function setmydata(code, name) {
+            $("#Hiddencode").attr("value", code);
+            $("#Hiddenname").attr("value", name);
+            closeCdBrDialog();
+        }
+
+        function getSelected() {
+            var selected = [];
+            var obj = { "Code": $("#Hiddencode").val(), "Name": $("#Hiddenname").val() };
+            selected.push(obj);
+
+            return selected;
+        }
+    </script>
+
